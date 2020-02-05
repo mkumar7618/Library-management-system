@@ -23,12 +23,8 @@ if(!$_SESSION['user']){
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
-		</div>
-	</div>
-
-	<br><h1>Update A Book</h1><br>
+	<div class="col-md-12">
+	<h1>Update A Book</h1>
 	<form action="update_book.php" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		<label><h4>ISBN Number :</h4></label>
@@ -48,6 +44,8 @@ if(!$_SESSION['user']){
 		</div>
 		<input type="submit" name="sub" class="btn btn-danger"/>
 	</form>
+	</div>
+	</div>
 	<?php
 		if(isset($_POST['sub'])){
 			$bookname = $_POST['name'];
@@ -64,7 +62,7 @@ if(!$_SESSION['user']){
 			book_image = '$image',
 			book_isbn = '$isbn',
 			category = '$cat'
-			where bood_id = '$book_id'
+			where book_id = '$book_id'
 			";
 			$result = mysqli_query($con,$query);
 			if($result == true){

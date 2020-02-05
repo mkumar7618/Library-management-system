@@ -14,13 +14,8 @@
 			<a class="nav-link" href="index.php">Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="profile.php">Profile</a>
-		</li>
-		<li class="nav-item">
 			<a class="nav-link" href="add_member.php">Add Member</a>
-		</li><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+		</li>
 		<li class="nav-item">
 		<a class="nav-link" href="add_book.php">Add Books</a>
 		</li>
@@ -41,11 +36,11 @@
 		Others
 		</button>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			<a class="dropdown-item disabled" href="delete_book.php">Delete Book</a>
-			<a class="dropdown-item disabled" href="delete_member.php">Delete Member</a>
+			<a class="dropdown-item " href="update_book.php">Update Book</a>
+			<a class="dropdown-item " href="update_member.php">Update Member</a>
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item disabled" href="update_book.php">Update Book</a>
-			<a class="dropdown-item disabled" href="update_member.php">Update Member</a>
+			<a class="dropdown-item " href="delete_book.php">Delete Book</a>
+			<a class="dropdown-item " href="delete_member.php">Delete Member</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="#">Something else here</a>
 		</div>

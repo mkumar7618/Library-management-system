@@ -29,11 +29,11 @@ h1 {
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4">
+			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
 		</div>
-		<div class="col-md-7">
-		<h1>Welcome To Book Store</h1>
+		<div class="col-md-8" style="padding:0 10%;" >
+		<h1>Enter Details To Search Book</h1>
 			<form action="book_store.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 				<label><h4>Search Book :</h4></label>

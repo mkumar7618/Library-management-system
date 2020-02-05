@@ -24,11 +24,13 @@ if(!$_SESSION['user']){
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4" >
+			<img class="banner img-responsive" src="image/library.jpg" width='100%' />
 		</div>
-		<div class="col-md-7">
-			<h1>Welcome to admin area</h1>
+		<div class="col-md-8">
+			<div style="text-align:center;" >
+				<h1>Welcome to admin area</h1>
+			</div>
 		</div>
 	</div>
 	

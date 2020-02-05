@@ -8,6 +8,9 @@ if(!$_SESSION['user']){
 		</script>
 	";
 }
+
+$user_id=$_GET['id'];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,11 +34,7 @@ if(!$_SESSION['user']){
 			
 			<?php
 			$conn = mysqli_connect('localhost','root','','library');
-			$user=$_SESSION['user'];
-			$query = "select distinct * from user_login where user_name='$user'";
-			$results = mysqli_query($conn,$query);
-			$row = mysqli_fetch_assoc($results);
-			$user_id=$row['user_id'];
+			
 			$query = "select distinct * from members where id='$user_id'";
 			$results = mysqli_query($conn,$query);
 			$row = mysqli_fetch_assoc($results);
@@ -50,6 +49,54 @@ if(!$_SESSION['user']){
 		
 		</div>
 	</div>
+	<br>
+	<br>
+	
+	<div class="table-responsive">          
+	<table class="table table-striped text-center ">
+		<thead>
+			<tr class="table-info ">
+			<th>Book ISBN</th>
+			<th>Issue Date</th>
+			<th>Due Date</th>
+			<th>Return Date</th>
+			<th>Fine</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+		$conn = mysqli_connect('localhost','root','','library');
+		
+		$query = "select * from fines where issue_id='$user_id'";
+		$result = mysqli_query($conn,$query);
+		
+		foreach ($result as $value) {
+			$out_date=date_create($value['out_date']);
+			$due_date=date_create($value['due_date']);
+			$in_date=date_create($value['in_date']);
+			
+			echo "<tr>";
+			echo "<td class='info'>" .$value['isbn']. "</br>" . "</td>";
+			echo "<td class='info'>" .$value['out_date']. "</td>";
+			echo "<td class='info'>" .$value['due_date']. "</td>";
+			echo "<td class='info'>" .$value['in_date']. "</td>";
+			$diff=date_diff($due_date,$in_date);
+			$day=$diff->format("%R%a");
+			if($day<1){
+				echo "<td class='info'>Zero INR</td>";
+				echo "</tr>";
+			}
+			else{
+				$fine=$day*5;
+				echo "<td class='info'>$fine INR</td>";
+				echo "</tr>";
+			}
+		}
+		?>
+		</tbody>
+	</table>
+	</div>
+	<br>
 	
 	<!--footer-->
 	<div class="footer">

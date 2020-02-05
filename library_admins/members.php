@@ -23,15 +23,15 @@ if(!$_SESSION['user']){
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4">
+			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
 		</div>
-		<div class="col-md-7">
-		<h1>Members</h1><br>
+		<div class="col-md-8" style="padding:0 10%;" >
+		<h1>Enter Details To Search Members</h1><br>
 			<form action="members.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 				<label><h4>Search Member :</h4></label>
-				<input class="form-control" type="text" name="search" placeholder="Enter Member ID Here" required />
+				<input class="form-control" type="text" name="search_id" placeholder="Enter Member ID Here" required />
 				</div>
 				<div class="form-group">
 				<input type="submit" class="btn btn-success" name="submit" value="Search"/>
@@ -39,7 +39,7 @@ if(!$_SESSION['user']){
 			</form>
 		</div>
 	</div>
-
+	<br>
 	  <h1>Member Records</h1>                                                                       
 	<div class="table-responsive">          
 		<table class="table table-striped ">
@@ -52,6 +52,28 @@ if(!$_SESSION['user']){
 		</thead>
 		<tbody>
 		<?php
+		if(isset($_POST['submit']) && $_POST['search_id']!== ''){
+			$id=$_POST['search_id'];
+			$conn = mysqli_connect('localhost','root','','library');
+			$query = "select distinct * from members where id='$id'";
+			$results = mysqli_query($conn,$query);
+
+			foreach ($results as $value) {
+				$id = $value['id'];
+				$name=$value['name'];
+			
+				$query = "select * from book_issued where issue_id='$id'";
+				$result = mysqli_query($conn,$query);
+				$row=mysqli_num_rows($result);
+				
+				echo "<tr>";
+				echo "<td class='info'><a href='info.php?id=$id'>".$id. "</a></td>";
+				echo "<td class='info' style='text-transform:uppercase' >".$name. "</td>";
+				echo "<td class='info'><a href='info.php?id=$id'>" .$row. " Books" . "</a></td>";
+				echo "</tr>";
+			}
+		}
+		else{
 			$conn = mysqli_connect('localhost','root','','library');
 			$query = "select * from members";
 			$results = mysqli_query($conn,$query);
@@ -65,10 +87,11 @@ if(!$_SESSION['user']){
 				$row=mysqli_num_rows($result);
 				
 				echo "<tr>";
-				echo "<td class='info'>".$id. "</td>";
+				echo "<td class='info'><a href='info.php?id=$id'>".$id. "</a></td>";
 				echo "<td class='info' style='text-transform:uppercase' >".$name. "</td>";
-				echo "<td class='info'>" .$row. " Books" . "</td>";
+				echo "<td class='info'><a href='info.php?id=$id'>" .$row. " Books" . "</a></td>";
 				echo "</tr>";
+			}
 		}
 		?>
 		</tbody>

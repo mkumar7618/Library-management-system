@@ -27,8 +27,9 @@ if(!$_SESSION['user']){
 #regForm {
   background-color: #ffffff;
   margin: 50px auto;
-  padding: 40px;
-  width: 70%;
+  padding: 0px;
+  width: 100%;
+  max-width: 800px;
   min-width: 300px;
 }
 
@@ -102,21 +103,23 @@ button:hover {
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
 	<div class="form-group">
-		<h4>Member Name :</h4>
-		<input class="form-control" type="text" name="name" oninput="this.className += ''" placeholder="Enter Member Name" required /><br/>
+		<h4>Name :</h4>
+		<input class="form-control" type="text" name="name"  placeholder="Enter Member Name" required /><br/>
 		<h4>Mobile Number :</h4>
 		<input class="form-control" type="number" name="number" oninput="this.className += ''" placeholder="Enter Mobile Number" required /><br/>
 		<h4>Address :</h4>
-		<textarea name="address" oninput="this.className += ''" placeholder="Enter Member Address" required ></textarea><br/>
+		<textarea name="address" oninput="this.className += ''" placeholder="Enter Member Address" style="height:70px;width:100%;" ></textarea><br/>
 	</div>
   </div>
   <div class="tab">	
 	<div class="form-group">
+		<h4>Photo :</h4>
+		<input class="form-control" type="file" name="image" placeholder="Enter Your Image" required />
 		<h4>User Name :</h4>
-		<input class="form-control" type="text" name="user_name" required /><br/>
+		<input class="form-control" type="text" name="user_name" placeholder='Enter User Name' required /><br/>
 		<h4>Password :</h4>
 		<input class="form-control" type="password" name="pass1" minlength="7" maxlength="20" placeholder='Enter Password' required /><br/>
-		<input class="form-control" type="password" name="pass2" minlength="7" maxlength="20" placeholder='Re-Enter Password' required />
+		<input class="form-control" type="password" name="pass2" minlength="7" maxlength="20" placeholder='Re-Enter Password' required /><br>
     </div>
   </div>
   <!-- Previous and next button -->
@@ -129,7 +132,7 @@ button:hover {
   
   <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">
-    <span class="step"></span>
+    <span class="step"></span>&nbsp;&nbsp;
 	<span class="step"></span>
   </div>
   <hr style="border:none;height:0px;width:10%;margin:auto;padding:3px;background-color:#4CAF50;border-radius: 25%;">
@@ -140,6 +143,8 @@ button:hover {
 				$name = $_POST['name'];
 				$number=$_POST['number'];
 				$address=$_POST['address'];
+				$image = $_FILES['image']['name'];
+				$temp = $_FILES['image']['tmp_name'];
 				$user_name = $_POST['user_name'];
 				$pass1 = $_POST['pass1'];
 				$pass2 = $_POST['pass2'];
@@ -153,10 +158,14 @@ button:hover {
 				}
 				else{
 					$con = mysqli_connect('localhost','root','','library');
-					$query="insert into members(name,number,address) values('$name','$number','$address');";
-					$query .="insert into admin_login(admin_name,admin_pass) values('$user_name','$pass1')";
+					$query="insert into members(name,number,address,image) values('$name','$number','$address','$image');";
+					$query .="insert into user_login(user_name,user_pass) values('$user_name','$pass1')";
 					$result = mysqli_multi_query($con,$query);
 					if($result == true){
+						
+						move_uploaded_file($temp, "library.com/library_admins/image/users_image");
+						move_uploaded_file($temp, "library.com/library_users/image/users_image");
+
 						echo "
 							<script>
 							alert('Member has been added');

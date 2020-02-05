@@ -97,10 +97,10 @@ button:hover {
 <div class = "container">
 
 <div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4">
+			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-8" style="padding:0 10%;" >
 		<h1>Enter Details For Add A Book</h1>
 
 <form id="regForm" action="add_book_vldn.php" method="post" enctype="multipart/form-data">
@@ -119,7 +119,7 @@ button:hover {
   <div class="tab">
 		<div class="form-group">
 		<label><h4>Author Name :</h4></label>
-		<input list="author_list" class="form-control" name="auther_name" oninput="this.className += ''" placeholder="Select Or Enter Author Name" required />
+		<input list="author_list" class="form-control" name="author_list" oninput="this.className += ''" placeholder="Select Or Enter Author Name" required />
 		<datalist id="author_list">
 		<?php
 		$con = mysqli_connect('localhost','root','','library');

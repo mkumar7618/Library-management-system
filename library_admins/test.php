@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(!$_SESSION['user']){
 	echo "
 		<script>
@@ -9,55 +8,62 @@ if(!$_SESSION['user']){
 	";
 }
 ?>
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html>
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--import head.html file -->
 <?php include('head.html'); ?>
+
 
 </head>
 <body>
 
 <?php include('nav.php'); ?>
 <br>
-
 <div class = "container">
-	<div class="row">
-		<div class="col-md-3">
-			<img class="banner img-responsive" src="image/profile1.png" height="auto" width="100%" style="background-color: #f2f4f5;" />
-		</div>
-		<div class="col-md-9" style="padding:0 5%;" >
-			<h1>Welcome to profile area</h1>
-			
-			<?php
-			$conn = mysqli_connect('localhost','root','','library');
-			$query = "select * from members where ";
-			$results = mysqli_query($conn,$query);
 
-			foreach ($results as $value) {
-				$id = $value['id'];
-				$name=$value['name'];
-			
-				$query = "select * from book_issued where issue_id='$id'";
-				$result = mysqli_query($conn,$query);
-				$row=mysqli_num_rows($result);
-				
-				echo "<h4 class='info'>".$id. "</h4>";
-				echo "<h4 class='info' style='text-transform:uppercase' >".$name. "</h4>";
-				echo "<h4 class='info'>" .$row. " Books" . "</h4>";
-		}
-		?>
-		
-		</div>
+<h1>Enter Details For Add A Member</h1>
+
+<form id="regForm" action="test.php" method="post" enctype="multipart/form-data">
+  <div class="tab">	
+	<div class="form-group">
+		<h4>Photo :</h4>
+		<input class="form-control" type="file" name="image" placeholder="Enter Your Image" required /><br>
+		<input class="btn btn-secondary" name="sub" type="submit" value="add image"/>
+
 	</div>
+  </div>
+</form>
+
+<!-- $nome = $_FILES['userfile']['name'];
+$tipo = $_FILES['userfile']['type'];
+$dimensione = $_FILES['userfile']['size'];
+$tmp = $_FILES['userfile']['tmp_name'];
+$url_destinazione = "http://localhost/PHP/Giornale/" . $nome;
+$r = move_uploaded_file($tmp, $url_destinazione);-->
+
+<?php
+	if(isset($_POST['sub'])){
+		$image = $_FILES['image']['name'];
+		$temp = $_FILES['image']['tmp_name'];
+		$url_destinazione = "http://localhost/library.com/library_admins/image/users_image/" . $image;
+
+		move_uploaded_file($temp,$url_destinazione);
+	}
+		?>
 	
 	<!--footer-->
 	<div class="footer">
 		<?php include('footer.php'); ?>
 	</div>
-	
+
 </div>
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

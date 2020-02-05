@@ -24,10 +24,10 @@ if(!$_SESSION['user']){
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4">
+			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-8" style="padding:0 10%;" >
 		<h1>Delete Book</h1><br>
 		<form action="delete_book.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">

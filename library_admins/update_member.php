@@ -23,10 +23,7 @@ if(!$_SESSION['user']){
 
 <div class = "container">
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
-		</div>
-		<div class="col-md-7">
+		<div class="col-md-12">
 		<h1>Update A Member</h1><br>
 		<form action="update_member.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">

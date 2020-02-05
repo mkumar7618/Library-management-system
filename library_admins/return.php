@@ -25,15 +25,15 @@ if(!isset($_SESSION['user'])){
 <div class = "container">
 	<!--banner-->
 	<div class="row">
-		<div class="col-md-5">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='85%'>
+		<div class="col-md-4">
+			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
 		</div>
 
-		<div class="col-md-7">
-		<h1>Enter Details To Return Book :</h1><br>
+		<div class="col-md-8" style="padding:0 10%;" >
+		<h1>Enter Details To Return Book</h1><br>
 			<form action="return.php" method="post">
 				<div class='form-group'>
-					<label><h4>Enter ISBN Number :</h4></label>
+					<label><h4>ISBN Number :</h4></label>
 					<input class='form-control' name='isbn' type='text' value=''/>
 				</div>
 				<input type="submit" class="btn btn-success" name="return" value="Return"/>
