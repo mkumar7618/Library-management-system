@@ -111,7 +111,7 @@ if(!isset($_SESSION['user'])){
 			die();	
 		}
 		else{
-			$query = "select * from book_issued where isbn = '$isbn'";
+			$query = "select * from book_loans where isbn = '$isbn'";
 			$q = mysqli_query($con,$query);
 			$r = mysqli_num_rows($q);
 			if($r>0){
@@ -123,21 +123,20 @@ if(!isset($_SESSION['user'])){
 				die();
 			}
 			else{
-				$card_id = $_POST['card_id'];
+				$loan_id = $_POST['card_id'];
 				$isbn = $_POST['isbn'];
 				
 				$date=date_create("",timezone_open("Indian/Kerguelen"));
-				$out_date=date_format($date,"Y-m-d h:i:s");
+				$out_date=date_format($date,"Y-m-d");
 				date_add($date,date_interval_create_from_date_string("120 days"));
-				$due_date=date_format($date,"Y-m-d h:i:s");
+				$due_date=date_format($date,"Y-m-d");
 				
-				$query="insert into book_issued(isbn,issue_id,out_date) values('$isbn','$card_id','$out_date');";
-				$query .="insert into fines(isbn,issue_id,out_date,due_date) values('$isbn','$card_id','$out_date','$due_date')";
+				$query="insert into book_loans(isbn,loan_id,out_date,due_date) values('$isbn','$loan_id','$out_date','$due_date');";
 				
 				$result = mysqli_multi_query($con,$query);
 				
 				if($result==false){
-					echo "<script> 
+					echo "<script>
 					alert('Something Went Wrong!)
 					</script>";
 				}

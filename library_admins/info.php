@@ -67,7 +67,7 @@ $user_id=$_GET['id'];
 		<?php
 		$conn = mysqli_connect('localhost','root','','library');
 		
-		$query = "select * from fines where issue_id='$user_id'";
+		$query = "select * from book_loans where loan_id='$user_id'";
 		$result = mysqli_query($conn,$query);
 		
 		foreach ($result as $value) {

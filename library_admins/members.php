@@ -62,7 +62,7 @@ if(!$_SESSION['user']){
 				$id = $value['id'];
 				$name=$value['name'];
 			
-				$query = "select * from book_issued where issue_id='$id'";
+				$query = "select * from book_loans where loan_id='$id'";
 				$result = mysqli_query($conn,$query);
 				$row=mysqli_num_rows($result);
 				
@@ -82,7 +82,7 @@ if(!$_SESSION['user']){
 				$id = $value['id'];
 				$name=$value['name'];
 			
-				$query = "select * from book_issued where issue_id='$id'";
+				$query = "select * from book_loans where loan_id='$id'";
 				$result = mysqli_query($conn,$query);
 				$row=mysqli_num_rows($result);
 				

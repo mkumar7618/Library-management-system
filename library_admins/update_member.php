@@ -46,7 +46,7 @@ if(!$_SESSION['user']){
 			$member_id = $_POST['id'];
 			
 			$con = mysqli_connect('localhost','root','','library');
-			$query="update members set member_name = '$member_name' where member_id = '$member_id'";
+			$query="update members set name = '$member_name' where id = '$member_id'";
 			
 			$result = mysqli_query($con,$query);
 			if($result == true){

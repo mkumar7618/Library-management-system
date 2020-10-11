@@ -28,19 +28,16 @@ if(!$_SESSION['user']){
 	<form action="update_book.php" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		<label><h4>ISBN Number :</h4></label>
-		<input class="form-control" name="isbn" type="text" placeholder="Enter Book ID For The Book To Be Updated" />
+		<input class="form-control" name="isbn" type="text" placeholder="Enter Book ID For The Book To Be Updated" required />
 		</div>		
 		<div class="form-group">
 		<label><h4>Book Name :</h4></label>
-		<input class="form-control" name="name" type="text" placeholder="Enter Book Name" />
+		<input class="form-control" name="name" type="text" placeholder="Enter Book Name" required />
 		</div>
-		<div class="form-group">
-		<label><h4>Book Category :</h4></label>
-		<input class="form-control" name="cat" type="text" placeholder="Enter Book Category" />
-		</div>
+		
 		<div class="form-group">
 		<label><h4>Book image :</h4></label>
-		<input class="form-control" name="image" type="file"/>
+		<input class="form-control" name="image" type="file" required />
 		</div>
 		<input type="submit" name="sub" class="btn btn-danger"/>
 	</form>
@@ -48,21 +45,19 @@ if(!$_SESSION['user']){
 	</div>
 	<?php
 		if(isset($_POST['sub'])){
-			$bookname = $_POST['name'];
-			$book_id = $_POST['id'];
 			$isbn = $_POST['isbn'];
-			$cat = $_POST['cat'];
+			$bookname = $_POST['name'];
 			$image = $_FILES['image']['name'];
 			$temp = $_FILES['image']['tmp_name'];
-			move_uploaded_file($temp, "product_images/$image");
+
+			move_uploaded_file($temp, "image/books_front/$image");
 
 			$con = mysqli_connect('localhost','root','','library');
 			$query="update book_store
-			set book_name = '$bookname',
-			book_image = '$image',
-			book_isbn = '$isbn',
-			category = '$cat'
-			where book_id = '$book_id'
+			set isbn = '$isbn',
+			title = '$bookname',
+			img = '$image'
+			where isbn = '$isbn'
 			";
 			$result = mysqli_query($con,$query);
 			if($result == true){

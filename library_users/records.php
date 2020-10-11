@@ -50,7 +50,7 @@ if(!isset($_SESSION['user'])){
 			$results = mysqli_query($conn,$query);
 			$row = mysqli_fetch_assoc($results);
 			$user_name=$row['name'];
-			$query = "select * from fines where issue_id='$user_id'";
+			$query = "select * from book_loans where loan_id='$user_id'";
 			$result = mysqli_query($conn,$query);
 			
 				foreach ($result as $value) {

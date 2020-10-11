@@ -22,7 +22,7 @@ session_start();
 <div class = "container-fluid">
 	<div class="wrapper">
 		<form action="login.php" method="post" name="Login_Form" class="form-signin" enctype="multipart/form-data">       
-		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+		    <h3 class="form-signin-heading">Library<br>Sign In Here</h3>
 			  <hr class="colorgraph">
 			<div class="form-group">
 			<input type="text" class="form-control" name="User" placeholder="Username" required autofocus="" />

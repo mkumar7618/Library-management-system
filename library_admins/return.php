@@ -26,7 +26,7 @@ if(!isset($_SESSION['user'])){
 	<!--banner-->
 	<div class="row">
 		<div class="col-md-4">
-			<img class="banner img-responsive" src="image/library.jpg"/ width='100%'>
+			<img class="banner img-responsive" src="image/library.jpg" width='100%'>
 		</div>
 
 		<div class="col-md-8" style="padding:0 10%;" >
@@ -65,7 +65,7 @@ if(!isset($_SESSION['user'])){
 	if(isset($_POST['isbn']) && isset($_POST['return'])){
 		$con = mysqli_connect('localhost','root','','library');
 		$isbn = $_POST['isbn'];
-		$results = mysqli_query($con,"select * from book_issued where isbn='$isbn'");
+		$results = mysqli_query($con,"select * from book_loans where isbn='$isbn' AND status=0 ");
 		$rows = mysqli_num_rows($results);
 		if($rows == 0){
 			echo "
@@ -75,14 +75,14 @@ if(!isset($_SESSION['user'])){
 			";
 			die();	
 		}
+
 		else{
 			$date=date_create("",timezone_open("Indian/Kerguelen"));
-			$in_date=date_format($date,"Y-m-d h:i:s");
+			$in_date=date_format($date,"Y-m-d");
 			
-			$query="update fines set in_date='$in_date' where (in_date IS NULL AND isbn='$isbn');";
-			$query .="delete from book_issued where isbn='$isbn';";
+			$query="update book_loans set in_date='$in_date', status=1 where (isbn='$isbn' AND status=0 );";
+
 			$result = mysqli_multi_query($con,$query);
-			
 			echo "
 			<script>
 				alert('Book Returned!');

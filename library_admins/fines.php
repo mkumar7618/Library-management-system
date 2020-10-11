@@ -73,7 +73,7 @@ if(!isset($_SESSION['user'])){
 				$id = $value['id'];
 				$name=$value['name'];
 			
-				$query = "select * from fines where issue_id='$id'";
+				$query = "select * from book_loans where loan_id='$id'";
 				$result = mysqli_query($conn,$query);
 				
 				foreach ($result as $value) {
@@ -111,7 +111,7 @@ if(!isset($_SESSION['user'])){
 				$id = $value['id'];
 				$name=$value['name'];
 			
-				$query = "select * from fines where issue_id='$id'";
+				$query = "select * from book_loans where loan_id='$id'";
 				$result = mysqli_query($conn,$query);
 				
 				foreach ($result as $value) {
